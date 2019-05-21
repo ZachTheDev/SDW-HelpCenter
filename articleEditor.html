@@ -38,6 +38,21 @@
             </div>
         </div>
     </nav>
+
+    <template>
+        <editor v-model="editorText" />
+    </template>
+
+    <script>
+        import { Editor } from '@toast-ui/vue-editor'
+            new Vue({
+             el: '#app',
+            components: {
+                 'editor': Editor
+             }
+            });
+    </script>
+
     <div class="footer-clean" style="position:absolute;width:100%;bottom:0;">
         <footer>
             <div class="container" style="margin-left:0 !important;">

@@ -12,7 +12,11 @@
     <link rel="stylesheet" href="assets/css/Footer-Clean.css">
     <link rel="stylesheet" href="assets/css/Pretty-Search-Form.css">
     <link rel="stylesheet" href="assets/css/styles.css">
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="https://uicdn.toast.com/tui-editor/latest/tui-editor.css">
+    <link rel="stylesheet" href="https://uicdn.toast.com/tui-editor/latest/tui-editor-contents.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.33.0/codemirror.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+    <script src="https://uicdn.toast.com/tui-editor/latest/tui-editor-Editor-full.js"></script>
 </head>
 
 <body style="margin:0 0 100px;">
@@ -38,21 +42,7 @@
             </div>
         </div>
     </nav>
-
-    <template>
-        <editor v-model="editorText" />
-    </template>
-
-    <script>
-        import { Editor } from '@toast-ui/vue-editor'
-            new Vue({
-             el: '#app',
-            components: {
-                 'editor': Editor
-             }
-            });
-    </script>
-
+    <div id="editSection"></div>
     <div class="footer-clean" style="position:absolute;width:100%;bottom:0;">
         <footer>
             <div class="container" style="margin-left:0 !important;">
@@ -81,6 +71,14 @@
             </div>
         </footer>
     </div>
+    <script>
+        var editor = new tui.Editor({
+            el: document.querySelector('#editSection'),
+            initialEditType: 'wysiwyg',
+            previewStyle: 'vertical',
+            height: '300px'
+        });
+    </script>
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
 </body>

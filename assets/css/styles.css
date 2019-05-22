@@ -1,5 +1,5 @@
 * {
-  font-family: 'Source Sans Pro'
+  font-family: "Source Sans Pro";
 }
 
 .topButtons {
@@ -7,25 +7,25 @@
 }
 
 .btn {
-  border-radius: 0
+  border-radius: 0;
 }
 
 .button_search {
   font-size: 20px;
   text-align: left;
-  height: 50px
+  height: 50px;
 }
 
 .btn:active {
   -webkit-box-shadow: none;
   box-shadow: none;
-  outline: 0 !important
+  outline: 0 !important;
 }
 
 .btn:focus,
 .btn:hover {
   opacity: 1;
-  outline: 0 !important
+  outline: 0 !important;
 }
 
 .btn:active,
@@ -33,33 +33,33 @@
 .btn:hover {
   background-color: #eeb16e;
   color: #000 !important;
-  border-color: #777
+  border-color: #777;
 }
 
 .form-control,
 .navbar {
-  -webkit-transition: all .3s linear;
-  -moz-transition: all .3s linear;
-  -o-transition: all .3s linear;
-  -ms-transition: all .3s linear;
-  transition: all .3s linear
+  -webkit-transition: all 0.3s linear;
+  -moz-transition: all 0.3s linear;
+  -o-transition: all 0.3s linear;
+  -ms-transition: all 0.3s linear;
+  transition: all 0.3s linear;
 }
 
 .bigButton:hover {
-  font-weight: 600
+  font-weight: 600;
 }
 
 #searchButton {
-  background-color: #e9ecef
+  background-color: #e9ecef;
 }
 
 .bigButton:active {
   background-color: #d57b18 !important;
-  box-shadow: none !important
+  box-shadow: none !important;
 }
 
 .bigButton:focus {
-  box-shadow: none
+  box-shadow: none;
 }
 
 .navigation-clean {
@@ -70,23 +70,23 @@
   border-radius: 0;
   box-shadow: none;
   border: none;
-  margin-bottom: 0
+  margin-bottom: 0;
 }
 
-@media (max-width:767px) {
+@media (max-width: 767px) {
   .navigation-clean {
     padding-top: 0;
-    padding-bottom: 0
+    padding-bottom: 0;
   }
 }
 
 .navigation-clean .navbar-brand {
   font-weight: 700;
-  color: inherit
+  color: inherit;
 }
 
 .navigation-clean .navbar-brand:hover {
-  color: #222
+  color: #222;
 }
 
 .navigation-clean .navbar-brand img {
@@ -94,100 +94,100 @@
   display: inline-block;
   margin-right: 10px;
   width: auto;
-  margin-left: 5px
+  margin-left: 5px;
 }
 
 .navigation-clean .navbar-toggle {
-  border-color: #ddd
+  border-color: #ddd;
 }
 
 .navigation-clean .navbar-toggle:focus,
 .navigation-clean .navbar-toggle:hover {
-  background: 0 0
+  background: 0 0;
 }
 
 .navigation-clean .navbar-collapse,
 .navigation-clean .navbar-form {
-  border-top-color: #ddd
+  border-top-color: #ddd;
 }
 
 a {
-  color: #6d8de1
+  color: #6d8de1;
 }
 
 #footer a:active,
 a:hover {
   color: #fcf8f8;
   text-decoration: none;
-  font-weight: 700
+  font-weight: 700;
 }
 
 a {
   background-color: transparent;
-  -webkit-text-decoration-skip: objects
+  -webkit-text-decoration-skip: objects;
 }
 
 a:active,
 a:hover {
-  outline: 0
+  outline: 0;
 }
 
 a {
   color: #1e87f0;
   text-decoration: none;
-  cursor: pointer
+  cursor: pointer;
 }
 
 a:hover {
   color: #0f6ecd;
-  text-decoration: underline
+  text-decoration: underline;
 }
 
 img {
-  vertical-align: middle
+  vertical-align: middle;
 }
 
 img {
   max-width: 100%;
   height: auto;
-  box-sizing: border-box
+  box-sizing: border-box;
 }
 
 img {
-  border-style: none
+  border-style: none;
 }
 
 address,
 p,
 ul {
-  margin: 0 0 20px 0
+  margin: 0 0 20px 0;
 }
 
 ul {
-  padding-left: 30px
+  padding-left: 30px;
 }
 
 footer,
 nav {
-  display: block
+  display: block;
 }
 
 a,
 button,
 input,
 select {
-  touch-action: manipulation
+  touch-action: manipulation;
 }
 
 .d-flex.justify-content-center.align-items-center.navbar-text {
   border-left: 4px solid #e0e0e0;
-  height: 1.5em
+  height: 1.5em;
 }
 
 #topText {
   position: absolute;
-  top: -.25em;
-  right: 2.5em
+  top: -0.25em;
+  right: 2.5em;
 }
 
 .bigButton {
@@ -198,8 +198,8 @@ select {
   background: #eba65a;
   color: #000;
   border: none;
-  font-family: 'Source Sans Pro';
-  line-height: 1em
+  font-family: "Source Sans Pro";
+  line-height: 1em;
 }
 
 #iAmA {
@@ -207,7 +207,7 @@ select {
   margin: auto;
   font-size: 3em;
   text-align: center;
-  color: #000
+  color: #000;
 }
 
 #looking {
@@ -216,45 +216,45 @@ select {
   text-align: center;
   color: #000;
   padding-top: 1.5vh;
-  font-size: 1.2em
+  font-size: 1.2em;
 }
 
 .table td {
-  border-top: 0
+  border-top: 0;
 }
 
 #searchButton:hover {
-  background-color: #e0e0e0 !important
+  background-color: #e0e0e0 !important;
 }
 
 #searchInput:focus {
-  border: none
+  border: none;
 }
 
 #searchInput {
-  border: none
+  border: none;
 }
 
 #searchIcon {
-  border: none
+  border: none;
 }
 
 #searchButton:focus {
   border: none;
   box-shadow: none;
-  background-color: #e0e0e0
+  background-color: #e0e0e0;
 }
 
 strong {
-  -webkit-user-select: text
+  -webkit-user-select: text;
 }
 
 .topButtons {
   background: #fff;
   outline: 0;
-  border: none
+  border: none;
 }
 
 .bigButton:focus {
-  box-shadow: none
+  box-shadow: none;
 }

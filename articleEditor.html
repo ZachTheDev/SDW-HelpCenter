@@ -1,86 +1,127 @@
 <!DOCTYPE html>
 <html style="position:relative;min-height:100%;">
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Help Center</title>
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
-    <link rel="stylesheet" href="assets/fonts/ionicons.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,900">
-    <link rel="stylesheet" href="assets/css/Footer-Clean.css">
-    <link rel="stylesheet" href="assets/css/Pretty-Search-Form.css">
-    <link rel="stylesheet" href="assets/css/styles.css">
-    <link rel="stylesheet" href="https://uicdn.toast.com/tui-editor/latest/tui-editor.css">
-    <link rel="stylesheet" href="https://uicdn.toast.com/tui-editor/latest/tui-editor-contents.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.33.0/codemirror.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css" />
+    <link rel="stylesheet" href="assets/fonts/ionicons.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,900" />
+    <link rel="stylesheet" href="assets/css/Footer-Clean.css" />
+    <link rel="stylesheet" href="assets/css/Pretty-Search-Form.css" />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+    <link rel="stylesheet" href="https://uicdn.toast.com/tui-editor/latest/tui-editor.css" />
+    <link rel="stylesheet" href="https://uicdn.toast.com/tui-editor/latest/tui-editor-contents.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.33.0/codemirror.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
     <script src="https://uicdn.toast.com/tui-editor/latest/tui-editor-Editor-full.js"></script>
-</head>
+  </head>
 
-<body style="margin:0 0 100px;">
-    <nav class="navbar navbar-light navbar-expand-md"
-        style="background-color:#009396;box-shadow:0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.20);">
-        <div class="container-fluid"><a
-                class="navbar-brand justify-content-center align-items-center align-content-center" href="#"><img
-                    class="d-flex justify-content-center align-items-center align-content-center"
-                    src="assets/img/SDW-Logo-TEAL.png" style="width:10em;"></a><button class="navbar-toggler"
-                data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span
-                    class="navbar-toggler-icon"></span></button>
-            <div class="collapse navbar-collapse" id="navcol-1">
-                <p class="navbar-text" id="topText" style="color:#F5F5F5;">Create a &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                    &nbsp; &nbsp; &nbsp; &nbsp;Can't find it?</p><span
-                    class="d-flex justify-content-center align-items-center navbar-text"
-                    style="font-size:48px;line-height:48px;letter-spacing:0;padding:0;color:rgba(0,0,0,0);">|</span>
-                <span class="navbar-text"
-                    style="margin:0;margin-left:5px;font-size:22px;font-weight:bold;color:#fff;">Help Center</span>
-                <ul class="nav navbar-nav ml-auto" style="margin-left:20px;"></ul><a class="btn btn-dark topButtons"
-                    role="button" href="https://helpdesk.waukesha.k12.wi.us/" style="width:7em;">Ticket</a><a
-                    class="btn btn-dark topButtons" role="button" href="mailto:ITHelpDesk@waukesha.k12.wi.us"
-                    style="margin-left:10px;width:7em;">Contact Us</a>
-            </div>
+  <body style="margin:0 0 100px;">
+    <nav
+      class="navbar navbar-light navbar-expand-md"
+      style="background-color:#009396;box-shadow:0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.20);"
+    >
+      <div class="container-fluid">
+        <a class="navbar-brand justify-content-center align-items-center align-content-center" href="/">
+          <img
+            class="d-flex justify-content-center align-items-center align-content-center"
+            src="assets/img/SDW-Logo-TEAL.png"
+            style="width:10em;"
+          />
+        </a>
+        <button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navcol-1">
+          <p class="navbar-text" id="topText" style="color:#F5F5F5;">
+            Create a &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Can't find it?
+          </p>
+          <span
+            class="d-flex justify-content-center align-items-center navbar-text"
+            style="font-size:48px;line-height:48px;letter-spacing:0;padding:0;color:rgba(0,0,0,0);"
+          >
+            |
+          </span>
+          <span class="navbar-text" style="margin:0;margin-left:5px;font-size:22px;font-weight:bold;color:#fff;">
+            Help Center
+          </span>
+          <ul class="nav navbar-nav ml-auto" style="margin-left:20px;"></ul>
+          <a
+            class="btn btn-dark topButtons"
+            role="button"
+            href="https://helpdesk.waukesha.k12.wi.us/"
+            style="width:7em;"
+          >
+            Ticket
+          </a>
+          <a
+            class="btn btn-dark topButtons"
+            role="button"
+            href="mailto:ITHelpDesk@waukesha.k12.wi.us"
+            style="margin-left:10px;width:7em;"
+          >
+            Contact Us
+          </a>
         </div>
+      </div>
     </nav>
     <div id="editSection"></div>
     <div class="footer-clean" style="position:absolute;width:100%;bottom:0;">
-        <footer>
-            <div class="container" style="margin-left:0 !important;">
-                <div class="row justify-content-start" style="margin-left:1vw;">
-                    <div class="col" style="max-width:20% !important;">
-                        <h3 style="margin-bottom:0;width:10vw;">Address</h3><span
-                            style="font-weight:100;position:absolute;top:0px;"><br><strong>222 Maple
-                                Avenue,</strong><br><strong>Waukesha, WI 53186</strong><br><br></span>
-                    </div>
-                    <div class="col-sm-4 col-md-3 item">
-                        <h3 style="margin-bottom:0;">Phone</h3><span
-                            style="font-weight:100;position:absolute;top:0;"><br><strong>262-970-1003</strong><br><br></span>
-                    </div>
-                    <div class="col-sm-4 col-md-3 item" style="height:100px;"></div>
-                    <div class="col-lg-3 item social" style="position:absolute;right:1vw;"><a
-                            href="https://www.facebook.com/waukeshaschooldistrict/"><i
-                                class="icon ion-social-facebook"></i></a><a
-                            href="https://twitter.com/waukeshaschools"><i class="icon ion-social-twitter"></i></a><a
-                            href="https://www.youtube.com/channel/UCUYvFcXRCt0GTrCgF30XM1w"><i
-                                class="icon ion-social-youtube"></i></a>
-                        <a href="https://www.instagram.com/waukeshaschooldistrict/"><i
-                                class="icon ion-social-instagram"></i></a>
-                        <p class="copyright">School District of Waukesha © 2019</p>
-                    </div>
-                </div>
+      <footer>
+        <div class="container" style="margin-left:0 !important;">
+          <div class="row justify-content-start" style="margin-left:1vw;">
+            <div class="col" style="max-width:20% !important;">
+              <h3 style="margin-bottom:0;width:10vw;">Address</h3>
+              <span style="font-weight:100;position:absolute;top:0px;">
+                <br />
+                <strong>222 Maple Avenue,</strong>
+                <br />
+                <strong>Waukesha, WI 53186</strong>
+                <br />
+                <br />
+              </span>
             </div>
-        </footer>
+            <div class="col-sm-4 col-md-3 item">
+              <h3 style="margin-bottom:0;">Phone</h3>
+              <span style="font-weight:100;position:absolute;top:0;">
+                <br />
+                <strong>262-970-1003</strong>
+                <br />
+                <br />
+              </span>
+            </div>
+            <div class="col-sm-4 col-md-3 item" style="height:100px;"></div>
+            <div class="col-lg-3 item social" style="position:absolute;right:1vw;">
+              <a href="https://www.facebook.com/waukeshaschooldistrict/">
+                <i class="icon ion-social-facebook"></i>
+              </a>
+              <a href="https://twitter.com/waukeshaschools">
+                <i class="icon ion-social-twitter"></i>
+              </a>
+              <a href="https://www.youtube.com/channel/UCUYvFcXRCt0GTrCgF30XM1w">
+                <i class="icon ion-social-youtube"></i>
+              </a>
+              <a href="https://www.instagram.com/waukeshaschooldistrict/">
+                <i class="icon ion-social-instagram"></i>
+              </a>
+              <p class="copyright">School District of Waukesha © 2019</p>
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
     <script>
-        var editor = new tui.Editor({
-            el: document.querySelector('#editSection'),
-            initialEditType: 'wysiwyg',
-            previewStyle: 'vertical',
-            height: '300px'
-        });
+      var editor = new tui.Editor({
+        el: document.querySelector("#editSection"),
+        initialEditType: "wysiwyg",
+        previewStyle: "vertical",
+        height: "300px"
+      });
     </script>
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-</body>
-
+  </body>
 </html>

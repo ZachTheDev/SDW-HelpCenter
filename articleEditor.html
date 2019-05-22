@@ -77,11 +77,11 @@
                             <option value="2">Student</option>
                             <option value="3">Staff Member</option>
                         </select></td>
-                    <td colspan="3"><button id="save">Save Article</button></td>
+                    <td colspan="3" id="savetd"><button id="save">Save Article</button></td>
                 </tr>
             </table>
 
-            <div id="editSection" style="margin-bottom: 25px;"></div>
+            <div id="editSection"></div>
         </div>
 
         <div id="footer">
@@ -128,13 +128,28 @@
         </div>
     </div>
     <script>
-        var maxHeight = $("#wrapper").height();
+        function em(input) {
+            var emSize = parseFloat($("body").css("font-size"));
+            return (emSize * input);
+        }
+
+        var headerH = $("#header").height();
+        var footerH = $("#footer").height();
+        var metaInputsH = $("#metaInputs").height();
+        var bodyH = $(window).height() - (headerH + footerH);
+        var editorH = bodyH - (metaInputsH + em(1));
+
+        $(document).ready(function () {
+            $('#body').css('height', bodyH);
+        });
+
+        var maxHeight = $("#body").height() - $("#footer").height();
         var editor = new tui.Editor({
             el: document.querySelector("#editSection"),
             initialEditType: "wysiwyg",
             previewStyle: "vertical",
-            minHeight: maxHeight,
-            height: "auto"
+            minHeight: editorH,
+            height: editorH
         });
     </script>
     <script>

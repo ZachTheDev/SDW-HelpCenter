@@ -2,6 +2,10 @@
   font-family: "Source Sans Pro";
 }
 
+html {
+  overflow-x: hidden;
+}
+
 .topButtons {
   color: #000;
 }
@@ -31,9 +35,9 @@
 .btn:active,
 .btn:focus,
 .btn:hover {
-  background-color: #eeb16e;
+  background-color: #eea75a;
   color: #000 !important;
-  border-color: #777;
+  /* border-color: #777; */
 }
 
 .form-control,
@@ -195,7 +199,7 @@ select {
   height: 7vw;
   font-size: 5vh;
   text-transform: uppercase;
-  background: #eba65a;
+  background: #ea9131;
   color: #000;
   border: none;
   font-family: "Source Sans Pro";
@@ -269,16 +273,14 @@ strong {
 #header,
 #footer {
   width: 100%;
-  /* height: 100px; */
   /* background: red; */
 }
 
 #body {
-  /* height: 70%; */
+  /* height: 1em; */
   width: 100%;
   padding-top: 1em;
   /* background: blue; */
-  overflow-x: hidden;
 }
 
 #metaInputs {
@@ -291,6 +293,19 @@ strong {
 #save {
   margin-bottom: 1em;
   margin-right: 2em;
+  background-color: #ea9131;
+  height: 6vh;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+#save:hover {
+  background-color: #eea75a;
+  text-shadow: -0.03ex 0 black, 0.03ex 0 black;
+}
+
+#save:focus {
+  box-shadow: none;
 }
 
 #savetd {
@@ -314,4 +329,8 @@ option[value=""][disabled] {
 }
 option {
   color: black;
+}
+
+input {
+  text-indent: 5px;
 }

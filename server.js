@@ -1,12 +1,13 @@
 var express = require("express");
+const fs = require('fs');
 var app = express();
 var router = express.Router();
-var path = __dirname + '/public';
+var path = __dirname + '/';
 
 app.use("/assets", express.static(__dirname + '/assets'));
 
-app.post("/add-tasks", function (req, res) {
-    fs.write("tasks.json", "JSON", req.body);
+app.post("/writeArticle", function (req, res) {
+    fs.writeFile("articles.json", "JSON", req.body);
 });
 
 router.use(function (req, res, next) {

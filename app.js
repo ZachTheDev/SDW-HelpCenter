@@ -14,9 +14,6 @@ app.post('/articles.json', function (req, res) {
     // res.redirect('/');
 });
 
-
-
-
 // router.use(function (req, res, next) {
 //     console.log("/" + req.method);
 //     next();

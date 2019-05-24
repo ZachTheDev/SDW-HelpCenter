@@ -36,7 +36,8 @@
                     </button>
                     <div class="collapse navbar-collapse" id="navcol-1">
                         <p class="navbar-text" id="topText" style="color:#F5F5F5;">
-                            Create a &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Can't find it?
+                            Create a &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                            &nbsp;Can't find it?
                         </p>
                         <span class="d-flex justify-content-center align-items-center navbar-text"
                             style="font-size:48px;line-height:48px;letter-spacing:0;padding:0;color:rgba(0,0,0,0);">
@@ -68,17 +69,24 @@
                     <th>User Type</th>
                 </tr>
                 <tr>
-                    <td><input type="text" name="title" placeholder="Title" class="articleInput" id="articleTitle"></td>
-                    <td><input type="text" name="author" placeholder="Author" class="articleInput" id="articleAuthor">
+                    <td>
+                        <input type="text" name="title" placeholder="Title" class="articleInput" id="articleTitle" />
                     </td>
-                    <td><select required name="usertype" class="articleInput" id="articleType">
+                    <td>
+                        <input type="text" name="author" placeholder="Author" class="articleInput" id="articleAuthor" />
+                    </td>
+                    <td>
+                        <select required name="usertype" class="articleInput" id="articleType">
                             <option value="" disabled selected>Select type</option>
                             <option value="1">Parent</option>
                             <option value="2">Student</option>
                             <option value="3">Staff Member</option>
-                        </select></td>
-                    <td colspan="3" id="savetd"><button id="save" class="btn ripple" action="getData()">Save
-                            Article</button>
+                        </select>
+                    </td>
+                    <td colspan="3" id="savetd">
+                        <button id="save" class="btn ripple" onclick="getData()">
+                            Save Article
+                        </button>
                     </td>
                 </tr>
             </table>
@@ -132,27 +140,9 @@
     <script src="assets/js/jquery.min.js"></script>
     <!-- <script src="assets/js/main.js"></script> -->
     <script>
-        function getData() {
-            var title = $("#articleTitle").val();
-            var author = $("#articleAuthor").val();
-            var userType = $("#articleType").val();
-
-            var metadata = {
-                task: title,
-                important: author,
-                urgent: userType
-            };
-
-            $("#save").on("click", function () {
-                $.post("/server.js", metadata);
-            });
-            console.log('test');
-        };
-    </script>
-    <script>
         function em(input) {
             var emSize = parseFloat($("body").css("font-size"));
-            return (emSize * input);
+            return emSize * input;
         }
 
         var headerH = $("#header").height();
@@ -162,7 +152,7 @@
         var editorH = bodyH - (metaInputsH + em(1));
 
         $(document).ready(function () {
-            $('#body').css('height', bodyH);
+            $("#body").css("height", bodyH);
         });
 
         var maxHeight = $("#body").height() - $("#footer").height();
@@ -173,11 +163,24 @@
             minHeight: editorH,
             height: editorH
         });
+    </script>
+    <script>
+        function getData() {
+            var title = $("#articleTitle").val();
+            var author = $("#articleAuthor").val();
+            var userType = $("#articleType").val();
+            var markdown = editor.getMarkdown();
 
-        var editorContent = editor.getMarkdown();
+            var articleData = {};
+            articleData.title = "title";
+            articleData.author = "author";
+            articleData.userType = "userType";
+            articleData.markdown = "markdown";
+
+            console.log(articleData);
+        }
     </script>
-    <script src="assets/bootstrap/js/bootstrap.min.js">
-    </script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
 </body>
 
 </html>

@@ -77,7 +77,8 @@
                             <option value="2">Student</option>
                             <option value="3">Staff Member</option>
                         </select></td>
-                    <td colspan="3" id="savetd"><button id="save" class="btn ripple">Save Article</button>
+                    <td colspan="3" id="savetd"><button id="save" class="btn ripple" action="getData()">Save
+                            Article</button>
                     </td>
                 </tr>
             </table>
@@ -129,7 +130,25 @@
         </div>
     </div>
     <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/main.js"></script>
+    <!-- <script src="assets/js/main.js"></script> -->
+    <script>
+        function getData() {
+            var title = $("#articleTitle").val();
+            var author = $("#articleAuthor").val();
+            var userType = $("#articleType").val();
+
+            var metadata = {
+                task: title,
+                important: author,
+                urgent: userType
+            };
+
+            $("#save").on("click", function () {
+                $.post("/server.js", metadata);
+            });
+            console.log('test');
+        };
+    </script>
     <script>
         function em(input) {
             var emSize = parseFloat($("body").css("font-size"));

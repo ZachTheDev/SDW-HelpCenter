@@ -178,6 +178,17 @@
             articleData.markdown = "markdown";
 
             console.log(articleData);
+            $.ajax({
+                url: '/app.js', //This is the current doc
+                type: "POST",
+                dataType: 'json', // add json datatype to get json
+                data: ({
+                    name: 145
+                }),
+                success: function (data) {
+                    console.log(data);
+                }
+            });
         }
     </script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>

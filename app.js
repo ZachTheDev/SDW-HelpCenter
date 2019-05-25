@@ -1,10 +1,17 @@
 var express = require("express");
 const fs = require('fs');
 var app = express();
+var bodyParser = require('body-parser');
 // var router = express.Router();
 var path = __dirname + '/';
 
 app.use(express.static(__dirname));
+app.use(bodyParser.json());
+
+app.post('/', function (req, res) {
+    console.log(req.body);
+    res.json(req.body);
+})
 
 app.post('/articles.json', function (req, res) {
     // console.log(req);

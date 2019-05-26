@@ -1,25 +1,48 @@
-var express = require("express");
-const fs = require('fs');
-var app = express();
+var express = require('express'),
+    app = express(),
+    router = express.Router(),
+    port = 3000,
+    fs = require('fs');
 var bodyParser = require('body-parser');
-// var router = express.Router();
-var path = __dirname + '/';
-
 app.use(express.static(__dirname));
+
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
 
-app.post('/', function (req, res) {
-    console.log(req.body);
-    res.json(req.body);
-})
-
-app.post('/articles.json', function (req, res) {
-    // console.log(req);
-    console.log('req received');
-    data = JSON.stringify(req.body)
-    fs.writeFile("articles.json", data);
-    // res.redirect('/');
+app.listen(port, function () {
+    console.log("Live at Port " + port);
 });
+
+app.post("/endpoint", function (req, res) {
+    console.log(req.body);
+    var articleData = JSON.stringify(req.body);
+    // fs.writeFile("articles.json", articleData);
+    fs.readFile('articles.json', function (err, data) {
+        var jsonData = new Array();
+        // jsonData = JSON.parse(data);
+        console.log(jsonData);
+        jsonData.push(articleData);
+        fs.writeFile("articles.json", JSON.stringify(jsonData));
+    });
+
+    // res.send({
+    //     status: 'SUCCESS'
+    // });
+});
+
+
+// var router = express.Router();
+// var path = __dirname + '/';
+
+// app.post('/articles.json', function (req, res) {
+//     // console.log(req);
+//     console.log('req received');
+//     data = JSON.stringify(req.body)
+//     fs.writeFile("articles.json", data);
+//     // res.redirect('/');
+// });
 
 // router.use(function (req, res, next) {
 //     console.log("/" + req.method);
@@ -47,7 +70,3 @@ app.post('/articles.json', function (req, res) {
 // app.use("*", function (req, res) {
 //     res.sendFile(path + "404.html");
 // });
-
-app.listen(3000, function () {
-    console.log("Live at Port 3000");
-});

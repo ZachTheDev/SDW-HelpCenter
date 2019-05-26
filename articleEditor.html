@@ -151,8 +151,18 @@
         var bodyH = $(window).height() - (headerH + footerH);
         var editorH = bodyH - (metaInputsH + em(1));
 
-        $(document).ready(function () {
+        function footerAlign() {
+            var headerH = $("#header").height();
+            var footerH = $("#footer").height();
+            var metaInputsH = $("#metaInputs").height();
+            var bodyH = $(window).height() - (headerH + footerH);
+            var editorH = bodyH - (metaInputsH + em(1));
             $("#body").css("height", bodyH);
+            return editorH;
+        }
+
+        $(document).ready(function () {
+            footerAlign();
         });
 
         var maxHeight = $("#body").height() - $("#footer").height();
@@ -163,6 +173,10 @@
             minHeight: editorH,
             height: editorH
         });
+
+        $(window).resize(function () {
+            editor.height(footerAlign());
+        });
     </script>
     <script>
         function getData() {
@@ -171,22 +185,33 @@
             var userType = $("#articleType").val();
             var markdown = editor.getMarkdown();
 
-            var articleData = {};
-            articleData.title = "title";
-            articleData.author = "author";
-            articleData.userType = "userType";
-            articleData.markdown = "markdown";
+            function makeid(length) {
+                var result = '';
+                var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+                var charactersLength = characters.length;
+                for (var i = 0; i < length; i++) {
+                    result += characters.charAt(Math.floor(Math.random() *
+                        charactersLength));
+                }
+                return result;
+            }
+
+            var articleData = new Object();
+            articleData.id = makeid(4);
+            articleData.title = title;
+            articleData.author = author;
+            articleData.userType = userType;
+            articleData.markdown = markdown;
 
             console.log(articleData);
+
             $.ajax({
-                url: '/app.js', //This is the current doc
+                url: '/endpoint',
                 type: "POST",
-                dataType: 'json', // add json datatype to get json
-                data: ({
-                    name: 145
-                }),
-                success: function (data) {
-                    console.log(data);
+                dataType: 'json',
+                data: articleData,
+                success: function (articleData) {
+                    console.log(articleData);
                 }
             });
         }

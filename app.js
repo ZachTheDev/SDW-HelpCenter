@@ -18,13 +18,17 @@ app.listen(port, function () {
 app.post("/endpoint", function (req, res) {
     console.log(req.body);
     var articleData = JSON.stringify(req.body);
-    // fs.writeFile("articles.json", articleData);
+    // fs.writeFile("articles.json", articleData, (error) => {
+    //     console.log('error boi: ' + error);
+    // });
     fs.readFile('articles.json', function (err, data) {
-        var jsonData = new Array();
-        // jsonData = JSON.parse(data);
+        console.log(data);
+        jsonData = JSON.parse(data);
         console.log(jsonData);
         jsonData.push(articleData);
-        fs.writeFile("articles.json", JSON.stringify(jsonData));
+        fs.writeFile("articles.json", jsonData, (error) => {
+            console.log('error dude: ' + error);
+        });
     });
 
     // res.send({

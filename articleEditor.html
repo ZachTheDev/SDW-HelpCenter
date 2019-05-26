@@ -196,22 +196,26 @@
                 return result;
             }
 
+            var article = new Object();
+
             var articleData = new Object();
-            articleData.id = makeid(4);
             articleData.title = title;
             articleData.author = author;
             articleData.userType = userType;
             articleData.markdown = markdown;
+            article.id = makeid(4);
+            article.data = articleData;
 
-            console.log(articleData);
+            // console.log(JSON.stringify(articleData));
+            // console.log(JSON.stringify(article));
 
             $.ajax({
                 url: '/endpoint',
                 type: "POST",
                 dataType: 'json',
-                data: articleData,
-                success: function (articleData) {
-                    console.log(articleData);
+                data: article,
+                success: function (article) {
+                    console.log(article);
                 }
             });
         }

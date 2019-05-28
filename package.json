@@ -6,6 +6,7 @@
     },
     "dependencies": {
         "body-parser": "^1.19.0",
+        "elasticlunr": "^0.9.5",
         "express": "latest"
     }
 }

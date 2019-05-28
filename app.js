@@ -23,27 +23,12 @@ app.post("/endpoint", function (req, res) {
     articleData = obj.articles;
     console.log(articleData);
 
-    // fs.writeFile("articles.json", articleData, function (err) {
-    //     if (err) {
-    //         // there was an error
-    //         console.log("error buddy: " + err);
-    //     } else {
-    //         // data written successfully
-    //         console.log("write success bro");
-    //     }
-    // });
-
     fs.readFile('articles.json', function (err, d) {
         var data = JSON.parse(d);
         console.log("data:");
         console.log(data);
-        // var array = [];
-        // array.push(data);
         data.push(articleData);
         articles = JSON.stringify(data);
-        // articleToAdd = JSON.stringify(array);
-        // object.articles = articleToAdd;
-        // console.log(object);
         console.log(articles);
         fs.writeFile("articles.json", articles, function (err) {
             if (err) {
@@ -54,19 +39,13 @@ app.post("/endpoint", function (req, res) {
             }
         });
     });
+});
 
-    // fs.readFile('articles.json', function (err, data) {
-    //     var jsonData = JSON.parse(data);
-    //     // console.log(jsonData);
-    //     jsonData['articles'].push(articleData);
-    //     fs.writeFile("articles.json", jsonData, (error) => {
-    //         console.log('error dude: ' + error);
-    //     });
-    // });
+var elasticlunr = require('elasticlunr');
 
-    // res.send({
-    //     status: 'SUCCESS'
-    // });
+var index = elasticlunr(function () {
+    this.addField('title');
+    this.addField('body');
 });
 
 

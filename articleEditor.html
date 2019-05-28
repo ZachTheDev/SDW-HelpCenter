@@ -196,27 +196,27 @@
                 return result;
             }
 
-            var article = new Object();
-
-            var articleData = new Object();
+            var articles = {};
+            var article = {};
+            var articleData = {};
             articleData.title = title;
             articleData.author = author;
             articleData.userType = userType;
             articleData.markdown = markdown;
             article.id = makeid(4);
             article.data = articleData;
+            articles.articles = article;
 
             // console.log(JSON.stringify(articleData));
             // console.log(JSON.stringify(article));
+            console.log(articles);
+            console.log(JSON.stringify(articles));
 
             $.ajax({
                 url: '/endpoint',
                 type: "POST",
                 dataType: 'json',
-                data: article,
-                success: function (article) {
-                    console.log(article);
-                }
+                data: articles
             });
         }
     </script>

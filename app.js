@@ -20,7 +20,7 @@ app.post("/endpoint", function (req, res) {
     console.log(json);
     var obj = JSON.parse(json);
     console.log(obj);
-    articleData = JSON.stringify(obj.articles);
+    articleData = obj.articles;
     console.log(articleData);
 
     // fs.writeFile("articles.json", articleData, function (err) {
@@ -34,19 +34,18 @@ app.post("/endpoint", function (req, res) {
     // });
 
     fs.readFile('articles.json', function (err, d) {
-        var object = {};
-        var data = JSON.parse(d); //parse the JSON
-        console.log(data.articles);
-        var array = [];
-        array.push(data.articles);
-        console.log(array);
-        array.push(articleData);
-        console.log(array);
-        articleToAdd = JSON.stringify(array);
-        object.articles = articleToAdd;
-        console.log(object);
-        console.log(articleToAdd);
-        fs.writeFile("articles.json", object, function (err) {
+        var data = JSON.parse(d);
+        console.log("data:");
+        console.log(data);
+        // var array = [];
+        // array.push(data);
+        data.push(articleData);
+        articles = JSON.stringify(data);
+        // articleToAdd = JSON.stringify(array);
+        // object.articles = articleToAdd;
+        // console.log(object);
+        console.log(articles);
+        fs.writeFile("articles.json", articles, function (err) {
             if (err) {
                 // there was an error :(
                 console.log("error buddy: " + err);

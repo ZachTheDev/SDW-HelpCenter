@@ -1,9 +1,9 @@
-{
-    "id": "cFri",
+[{
+    "id": "blankArticle",
     "data": {
-        "title": "",
-        "author": "",
-        "userType": "",
-        "markdown": ""
+        "title": "null",
+        "author": "null",
+        "userType": "null",
+        "markdown": "null"
     }
-}
+}]

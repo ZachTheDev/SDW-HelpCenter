@@ -15,21 +15,63 @@ app.listen(port, function () {
     console.log("Live at Port " + port);
 });
 
+var elasticlunr = require('elasticlunr');
+
+var idx = elasticlunr(function () {
+    this.setRef('id');
+    this.addField('title');
+    this.addField('body');
+});
+
+fs.readFile('articles.json', function (err, data) {
+    if (err) throw err;
+
+    var raw = JSON.parse(data);
+    // console.log(raw);
+
+    var articles = raw.map(function (d) {
+        return {
+            id: d.id,
+            title: d.data.title,
+            body: d.data.markdown
+        };
+    });
+
+    articles.forEach(function (article) {
+        idx.addDoc(article);
+    });
+
+    fs.writeFile('index.json', JSON.stringify(idx), function (err) {
+        if (err) throw err;
+        console.log('index created');
+    });
+});
+
+// console.log(index.search("example"));
+
 app.post("/endpoint", function (req, res) {
     var json = JSON.stringify(req.body);
-    console.log(json);
+    // console.log(json);
     var obj = JSON.parse(json);
-    console.log(obj);
+    // console.log(obj);
     articleData = obj.articles;
-    console.log(articleData);
+    // console.log(articleData);
+
+    var doc = {};
+    doc.id = articleData.id;
+    doc.title = articleData.data.title;
+    doc.body = articleData.data.markdown;
+    idx.addDoc(doc);
+    // console.log(JSON.stringify(idx));
+    // console.log(doc);
 
     fs.readFile('articles.json', function (err, d) {
         var data = JSON.parse(d);
-        console.log("data:");
-        console.log(data);
+        // console.log("data:");
+        // console.log(data);
         data.push(articleData);
         articles = JSON.stringify(data);
-        console.log(articles);
+        // console.log(articles);
         fs.writeFile("articles.json", articles, function (err) {
             if (err) {
                 // there was an error :(
@@ -40,14 +82,6 @@ app.post("/endpoint", function (req, res) {
         });
     });
 });
-
-var elasticlunr = require('elasticlunr');
-
-var index = elasticlunr(function () {
-    this.addField('title');
-    this.addField('body');
-});
-
 
 // var router = express.Router();
 // var path = __dirname + '/';

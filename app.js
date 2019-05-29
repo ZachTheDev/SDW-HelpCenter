@@ -29,11 +29,11 @@ fs.readFile('articles.json', function (err, data) {
     var raw = JSON.parse(data);
     // console.log(raw);
 
-    var articles = raw.map(function (d) {
+    var articles = raw.map(function (a) {
         return {
-            id: d.id,
-            title: d.data.title,
-            body: d.data.markdown
+            id: a.id,
+            title: a.data.title,
+            body: a.data.markdown
         };
     });
 

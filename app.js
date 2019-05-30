@@ -47,6 +47,8 @@ fs.readFile('articles.json', function (err, data) {
     });
 });
 
+module.exports = idx;
+
 // console.log(index.search("example"));
 
 app.post("/endpoint", function (req, res) {

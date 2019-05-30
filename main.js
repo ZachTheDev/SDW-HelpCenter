@@ -1,57 +1,45 @@
 require([
-    'assets/js/jquery2.1.0.min.js',
+    'assets/js/jquery.js',
     'assets/js/mustache.js',
     'assets/js/elasticlunr.js',
     'text!templates/article_list.mustache',
     'text!articles.json',
     'text!index.json'
-], function (_, Mustache, elasticlunr, questionView, questionList, data, indexDump) {
-
-    var renderQuestionList = function (qs) {
+], function (_, Mustache, elasticlunr, articleList, data, pullIndex) {
+    var renderArticleList = function (qs) {
         $("#question-list-container")
             .empty()
-            .append(Mustache.to_html(questionList, {
-                questions: qs
+            .append(Mustache.to_html(articleList, {
+                articles: qs
             }));
     };
 
-    var renderQuestionView = function (question) {
-        $("#question-view-container")
-            .empty()
-            .append(Mustache.to_html(questionView, question));
-    };
+    // var idx = elasticlunr(function () {
+    //     this.setRef('id');
+    //     this.addField('title');
+    //     this.addField('body');
+    // });
 
-    window.profile = function (term) {
-        console.profile('search');
-        idx.search(term);
-        console.profileEnd('search');
-    };
+    var idxTemp = JSON.parse(pullIndex);
+    console.time('load');
+    window.idx = elasticlunr.Index.load(idxTemp);
 
     window.search = function (term) {
-        console.time('search');
         idx.search(term);
-        console.timeEnd('search');
     };
 
-    var indexDump = JSON.parse(indexDump);
-    console.time('load');
-    window.idx = elasticlunr.Index.load(indexDump);
-    console.timeEnd('load');
-
-    var questions = JSON.parse(data).questions.map(function (raw) {
+    var articles = JSON.parse(data).map(function (a) {
         return {
-            id: raw.question_id,
-            title: raw.title,
-            body: raw.body,
-            tags: raw.tags.join(' ')
+            id: a.id,
+            title: a.data.title,
+            body: a.data.markdown
         };
     });
 
-    renderQuestionList(questions);
-    renderQuestionView(questions[0]);
+    renderArticleList(articles);
 
     $('a.all').bind('click', function () {
-        renderQuestionList(questions);
+        renderArticleList(articles);
         $('input').val('');
     });
 
@@ -70,39 +58,46 @@ require([
 
     $('input').bind('keyup', debounce(function () {
         if ($(this).val() < 2) return;
-        var config = $('#configuration').val();
-        config.trim();
+        // var config = $('#configuration').val();
+        // config.trim();
         var json_config = null;
-        if (config != '') {
-            json_config = new elasticlunr.Configuration(config, idx.getFields()).get();
-        }
+        // if (config != '') {
+        //     json_config = new elasticlunr.Configuration(config, idx.getFields()).get();
+        // }
 
         var query = $(this).val();
+        console.log(query);
+        console.log(idx);
         var results = null;
         if (json_config == null) {
-            results = idx.search(query).map(function (result) {
-                return questions.filter(function (q) {
-                    return q.id === parseInt(result.ref, 10);
-                })[0];
-            });
+            results = idx.search(query);
+            console.log(results);
+            // .map(function (result) {
+            //     return articles.filter(function (q) {
+            //         console.log(q.id === parseInt(result.ref, 10));
+            //         return q.id === parseInt(result.ref, 10);
+            //     })[0];
+            // });
         } else {
             results = idx.search(query, json_config).map(function (result) {
-                return questions.filter(function (q) {
+                return articles.filter(function (q) {
+                    console.log(q.id === parseInt(result.ref, 10));
                     return q.id === parseInt(result.ref, 10);
                 })[0];
             });
         }
 
-        renderQuestionList(results);
+        console.log(results);
+        renderArticleList(results);
     }));
 
     $("#question-list-container").delegate('li', 'click', function () {
         var li = $(this);
         var id = li.data('question-id');
 
-        renderQuestionView(questions.filter(function (question) {
-            return (question.id == id);
-        })[0]);
+        // renderQuestionView(questions.filter(function (question) {
+        //     return (question.id == id);
+        // })[0]);
     });
 
 });

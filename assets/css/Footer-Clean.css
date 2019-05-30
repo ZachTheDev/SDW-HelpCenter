@@ -55,6 +55,7 @@
   border: 1px solid #fff;
   margin-left: 10px;
   color: inherit;
+  text-align: center;
 }
 
 .footer-clean .item.social > a:hover {

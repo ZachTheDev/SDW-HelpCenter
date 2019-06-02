@@ -7,8 +7,8 @@ require([
     'text!index.json'
 ], function (_, Mustache, elasticlunr, articleList, data, pullIndex) {
     var renderArticleList = function (qs) {
-        $("#question-list-container")
-            .empty()
+        $("#dropdownContainer")
+            // .empty()
             .append(Mustache.to_html(articleList, {
                 articles: qs
             }));

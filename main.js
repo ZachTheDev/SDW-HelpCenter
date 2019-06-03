@@ -6,12 +6,15 @@ require([
     'text!articles.json',
     'text!index.json'
 ], function (_, Mustache, elasticlunr, articleList, data, pullIndex) {
-    var renderArticleList = function (qs) {
-        $("#dropdownContainer")
-            // .empty()
-            .append(Mustache.to_html(articleList, {
-                articles: qs
-            }));
+    var renderArticleList = function (ar) {
+        console.log(ar);
+        for (i = 0; i <= 5; i++) {
+            $("#contentHolder")
+                // .empty()
+                .append(Mustache.to_html(articleList, {
+                    articles: ar
+                }));
+        }
     };
 
     // var idx = elasticlunr(function () {
@@ -48,7 +51,6 @@ require([
         return function () {
             var args = Array.prototype.slice.call(arguments),
                 ctx = this;
-
             clearTimeout(timeout);
             timeout = setTimeout(function () {
                 fn.apply(ctx, args);
@@ -80,15 +82,15 @@ require([
             // });
         } else {
             results = idx.search(query, json_config).map(function (result) {
-                return articles.filter(function (q) {
-                    console.log(q.id === parseInt(result.ref, 10));
-                    return q.id === parseInt(result.ref, 10);
+                return articles.filter(function (a) {
+                    console.log(a.id === parseInt(result.ref, 10));
+                    return a.id === parseInt(result.ref, 10);
                 })[0];
             });
         }
 
         console.log(results);
-        renderArticleList(results);
+        // renderArticleList(results);
     }));
 
     $("#question-list-container").delegate('li', 'click', function () {

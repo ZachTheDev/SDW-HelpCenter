@@ -7,14 +7,53 @@ require([
     'text!index.json'
 ], function (_, Mustache, elasticlunr, articleList, data, pullIndex) {
     var renderArticleList = function (ar) {
-        console.log(ar);
-        for (i = 0; i <= 5; i++) {
-            $("#contentHolder")
-                // .empty()
-                .append(Mustache.to_html(articleList, {
-                    articles: ar
-                }));
+        $(".dropdown-content").remove();
+        // console.log(ar);
+        newAr = [];
+        for (var x in ar) {
+            console.log(ar[x]);
+            newAr.push(ar[x][0]);
+            // console.log(ar[x][0]);
         }
+        // console.log(newAr);
+        bestAr = newAr.slice(0, 5);
+        // console.log(bestAr);
+        $("#contentHolder").append(Mustache.render(articleList, {
+            articles: bestAr
+        }));
+
+        if (bestAr.length) {
+            $("#searchInput").css("border-radius", "0 5px 0 0");
+            $("#searchIcon").css("border-radius", "5px 0 0 0");
+            $(".dropdown-content").addClass("active");
+        } else {
+            $("#searchInput").css("border-radius", "0 5px 5px 0");
+            $("#searchIcon").css("border-radius", "5px 0 0 5px");
+        }
+
+        $("#searchInput").keyup(function () {
+            if (this.value) {
+                $(".dropdown-content").addClass("active");
+                $(".dropdown").addClass("active");
+                $("#searchInput").addClass("active");
+                $("#searchIcon").addClass("active");
+            } else {
+                $(".dropdown-content").removeClass("active");
+                $(".dropdown").removeClass("active");
+                $("#searchInput").removeClass("active");
+                $("#searchIcon").removeClass("active");
+            }
+        });
+        $("#searchInput").focusout(function () {
+            $(".dropdown-content").addClass("hide");
+            $("#searchInput").css("border-radius", "0 5px 5px 0");
+            $("#searchIcon").css("border-radius", "5px 0 0 5px");
+        });
+        $("#searchInput").focus(function () {
+            $(".dropdown-content").removeClass("hide");
+            $("#searchInput").css("border-radius", "0 5px 0 0");
+            $("#searchIcon").css("border-radius", "5px 0 0 0");
+        });
     };
 
     // var idx = elasticlunr(function () {
@@ -39,12 +78,12 @@ require([
         };
     });
 
-    renderArticleList(articles);
+    // renderArticleList(articles);
 
-    $('a.all').bind('click', function () {
-        renderArticleList(articles);
-        $('input').val('');
-    });
+    // $('a.all').bind('click', function () {
+    //     renderArticleList(articles);
+    //     $('input').val('');
+    // });
 
     var debounce = function (fn) {
         var timeout;
@@ -60,7 +99,7 @@ require([
 
     $('input').bind('keyup', debounce(function () {
         if ($(this).val() < 2) return;
-        // var config = $('#configuration').val();
+        // var config = 'fields ": {"title": {"boost": 2},"body": {"boost": 1}}';
         // config.trim();
         var json_config = null;
         // if (config != '') {
@@ -69,28 +108,19 @@ require([
 
         var query = $(this).val();
         console.log(query);
-        console.log(idx);
+        // console.log(idx);
         var results = null;
         if (json_config == null) {
-            results = idx.search(query);
-            console.log(results);
-            // .map(function (result) {
-            //     return articles.filter(function (q) {
-            //         console.log(q.id === parseInt(result.ref, 10));
-            //         return q.id === parseInt(result.ref, 10);
-            //     })[0];
-            // });
-        } else {
-            results = idx.search(query, json_config).map(function (result) {
+            results = idx.search(query).map(function (result) {
+                // console.log(result.ref);
                 return articles.filter(function (a) {
-                    console.log(a.id === parseInt(result.ref, 10));
-                    return a.id === parseInt(result.ref, 10);
-                })[0];
+                    // console.log(a);
+                    return a.id === result.ref;
+                });
             });
         }
-
         console.log(results);
-        // renderArticleList(results);
+        renderArticleList(results);
     }));
 
     $("#question-list-container").delegate('li', 'click', function () {

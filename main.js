@@ -79,10 +79,12 @@ require([
     };
 
     var renderArticleView = function (article) {
-        console.log(article);
+        // console.log(article);
         $("#body")
             .empty()
-            .append(Mustache.render(articleViewer, article));
+            .append(Mustache.render(articleViewer, {
+                markdown: JSON.stringify(article)
+            }));
     };
 
     var idxTemp = JSON.parse(pullIndex);
@@ -146,18 +148,20 @@ require([
         renderArticleList(results);
     }));
 
-    $("#contentHolder").delegate('a', 'click', function () {
-        var a = $(this);
+    $("#contentHolder").on('click', 'a', function () {
+        var a = $(this).attr('id');
         console.log(a);
-        var id = a.data('id');
-        console.log(id);
+        var markdown = String(a);
+        // console.log(markdown);
 
-        renderArticleView(articles.filter(function (article) {
-            console.log(article.id);
-            console.log(id);
-            console.log(article.id == id);
-            return (article.id == id);
-        })[0]);
+        renderArticleView(markdown);
+
+        // renderArticleView(articles.filter(function (article) {
+        //     console.log(article.id);
+        //     console.log(id);
+        //     console.log(article.id == id);
+        //     return (article.id == id);
+        // })[0]);
     });
 
 });

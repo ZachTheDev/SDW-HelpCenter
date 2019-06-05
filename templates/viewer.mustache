@@ -2,28 +2,27 @@
     <div id="viewerSection"></div>
 </div>
 <script>
-        var headerH = $("#header").height();
-        var footerH = $("#footer").height();
-        var bodyH = $(window).height() - (headerH + footerH);
-        var editorH = bodyH;
+        var editor = new tui.Editor.factory({
+            el: document.querySelector('#viewerSection'),
+            viewer: true,
+            height: 'auto',
+            initialValue: '# Markdown Test\n## Heading 2\n### Heading 3\n#### Heading 4\n##### Heading 5\n###### Heading 6\n    code block\n```js\nconsole.log(\"fenced code block\");\n```\n<pre>**HTML block**</pre>\n* list\n    * list indented\n1. ordered\n2. list\n    1. ordered list\n    2. indented\n\n- [ ] task\n- [x] list completed\n\n[link](https://nhn.github.io/tui.editor/)\n> block quote\n---\nhorizontal line\n***\n`code`, *italic*, **bold**, ~~strikethrough~~, <span style=\"color:#e11d21\">Red color</span>\n\n# Table Cell Merge\n\n| @cols=2:merged |\n| --- | --- |\n| table | table |'
+        });
 
         function footerAlign() {
             var headerH = $("#header").height();
             var footerH = $("#footer").height();
-            var bodyH = $(window).height() - (headerH + footerH);
+            //var bodyH = $(window).height() - (headerH + footerH);
+            var bodyH = $('#viewerSection').height();
             var editorH = bodyH;
             $("#body").css("height", editorH);
             return editorH;
         }
 
-        var maxHeight = $("#body").height() - $("#footer").height();
-        var editor = new tui.Editor.factory({
-            el: document.querySelector('#viewerSection'),
-            viewer: true,
-            height: editorH,
-            initialValue: {{{body}}}
-            // '# Markdown Test\n## Heading 2\n### Heading 3\n#### Heading 4\n##### Heading 5\n###### Heading 6\n    code block\n```js\nconsole.log(\"fenced code block\");\n```\n<pre>**HTML block**</pre>\n* list\n    * list indented\n1. ordered\n2. list\n    1. ordered list\n    2. indented\n\n- [ ] task\n- [x] list completed\n\n[link](https://nhn.github.io/tui.editor/)\n> block quote\n---\nhorizontal line\n***\n`code`, *italic*, **bold**, ~~strikethrough~~, <span style=\"color:#e11d21\">Red color</span>\n\n# Table Cell Merge\n\n| @cols=2:merged |\n| --- | --- |\n| table | table |'
+        $("body").on('DOMSubtreeModified', "*", function() {
+            footerAlign();
         });
+        
 
         // $(window).resize(function () {
         //     editor.height(footerAlign());

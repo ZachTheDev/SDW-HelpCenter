@@ -2,20 +2,19 @@
     <div id="viewerSection"></div>
 </div>
 <script type="text/javascript">
-    var markdown = {{{markdown}}};
     var editor = new tui.Editor.factory({
         el: document.querySelector('#viewerSection'),
         viewer: true,
         height: 'auto',
-        initialValue: markdown
+        initialValue: {{{markdown}}}
         //'# Markdown Test\n## Heading 2\n### Heading 3\n#### Heading 4\n##### Heading 5\n###### Heading 6\n    code block\n```js\nconsole.log(\"fenced code block\");\n```\n<pre>**HTML block**</pre>\n* list\n    * list indented\n1. ordered\n2. list\n    1. ordered list\n    2. indented\n\n- [ ] task\n- [x] list completed\n\n[link](https://nhn.github.io/tui.editor/)\n> block quote\n---\nhorizontal line\n***\n`code`, *italic*, **bold**, ~~strikethrough~~, <span style=\"color:#e11d21\">Red color</span>\n\n# Table Cell Merge\n\n| @cols=2:merged |\n| --- | --- |\n| table | table |'
     });
 
     function footerAlign() {
         var bodyH = $('#viewerSection').height();
         bodyH = parseInt(bodyH);
-        console.log(bodyH);
-        if (!(bodyH <= 100)) {
+        // console.log(bodyH);
+        if (!(bodyH <= 400)) {
             $("#body").css("height", bodyH);
         } else {
             var headerH = $("#header").height();
@@ -26,10 +25,6 @@
     }
 
     $("body").on('DOMSubtreeModified', "*", function() {
-        footerAlign();
-    });
-
-    $("body").click(function() {
         footerAlign();
     });
 

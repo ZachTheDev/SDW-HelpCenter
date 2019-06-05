@@ -1,16 +1,6 @@
 <div class="dropdown-content">
   {{#articles}}
-  <a href="#">{{title}}</a>
+  <a href="#" class="searchResults">{{title}}</a>
   {{/articles}}
 </div>
-
-{{! <div>
-  <ul style="margin-left: 0px; margin-right: 0px; padding-left: 0px;">
-    {{#articles}
-    
-      <li data-question-id="{{id}">
-        <h2><a href="#">{{title}</a></h2>
-      </li>
-    {{/articles}
-  </ul>
-</div> }}
+{{! viewer.html?{{& id}} 

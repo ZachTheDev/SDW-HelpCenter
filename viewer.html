@@ -110,13 +110,12 @@
         </div>
     </div>
     <script src="assets/js/jquery.js"></script>
-    <!-- <script src="assets/js/main.js"></script> -->
     <script>
-        function em(input) {
-            var emSize = parseFloat($("body").css("font-size"));
-            return emSize * input;
-        }
-
+        var queryString = decodeURIComponent(window.location.search);
+        queryString = queryString.substring(1);
+        console.log(queryString);
+    </script>
+    <script>
         var headerH = $("#header").height();
         var footerH = $("#footer").height();
         var bodyH = $(window).height() - (headerH + footerH);
@@ -142,48 +141,6 @@
         // $(window).resize(function () {
         //     editor.height(footerAlign());
         // });
-    </script>
-    <script>
-        function getData() {
-            var title = $("#articleTitle").val();
-            var author = $("#articleAuthor").val();
-            var userType = $("#articleType").val();
-            var markdown = editor.getMarkdown();
-
-            function makeid(length) {
-                var result = '';
-                var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-                var charactersLength = characters.length;
-                for (var i = 0; i < length; i++) {
-                    result += characters.charAt(Math.floor(Math.random() *
-                        charactersLength));
-                }
-                return result;
-            }
-
-            var articles = {};
-            var article = {};
-            var articleData = {};
-            articleData.title = title;
-            articleData.author = author;
-            articleData.userType = userType;
-            articleData.markdown = markdown;
-            article.id = makeid(4);
-            article.data = articleData;
-            articles.articles = article;
-
-            // console.log(JSON.stringify(articleData));
-            // console.log(JSON.stringify(article));
-            console.log(articles);
-            console.log(JSON.stringify(articles));
-
-            $.ajax({
-                url: '/endpoint',
-                type: "POST",
-                dataType: 'json',
-                data: articles
-            });
-        }
     </script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
 </body>

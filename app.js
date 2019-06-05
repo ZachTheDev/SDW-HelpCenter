@@ -25,10 +25,8 @@ var idx = elasticlunr(function () {
 
 fs.readFile('articles.json', function (err, data) {
     if (err) throw err;
-
     var raw = JSON.parse(data);
     // console.log(raw);
-
     var articles = raw.map(function (a) {
         return {
             id: a.id,
@@ -36,11 +34,9 @@ fs.readFile('articles.json', function (err, data) {
             body: a.data.markdown
         };
     });
-
     articles.forEach(function (article) {
         idx.addDoc(article);
     });
-
     fs.writeFile('index.json', JSON.stringify(idx), function (err) {
         if (err) throw err;
         console.log('index created');
@@ -58,7 +54,6 @@ app.post("/endpoint", function (req, res) {
     // console.log(obj);
     articleData = obj.articles;
     // console.log(articleData);
-
     var doc = {};
     doc.id = articleData.id;
     doc.title = articleData.data.title;
@@ -66,7 +61,6 @@ app.post("/endpoint", function (req, res) {
     idx.addDoc(doc);
     // console.log(JSON.stringify(idx));
     // console.log(doc);
-
     fs.readFile('articles.json', function (err, d) {
         var data = JSON.parse(d);
         // console.log("data:");
@@ -83,6 +77,10 @@ app.post("/endpoint", function (req, res) {
             }
         });
     });
+});
+
+app.post("/articleSender", function (req, res) {
+
 });
 
 // var router = express.Router();

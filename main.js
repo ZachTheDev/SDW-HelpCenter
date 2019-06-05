@@ -3,21 +3,22 @@ require([
     'assets/js/mustache.js',
     'assets/js/elasticlunr.js',
     'text!templates/article_list.mustache',
+    'text!templates/viewer.mustache',
     'text!articles.json',
     'text!index.json'
-], function (_, Mustache, elasticlunr, articleList, data, pullIndex) {
+], function (_, Mustache, elasticlunr, articleList, articleViewer, data, pullIndex) {
     var renderArticleList = function (ar) {
         $(".dropdown-content").remove();
         // console.log(ar);
         newAr = [];
         for (var x in ar) {
-            console.log(ar[x]);
+            // console.log(ar[x]);
             newAr.push(ar[x][0]);
             // console.log(ar[x][0]);
         }
         // console.log(newAr);
         bestAr = newAr.slice(0, 5);
-        // console.log(bestAr);
+        console.log(bestAr);
         $("#contentHolder").append(Mustache.render(articleList, {
             articles: bestAr
         }));
@@ -26,41 +27,63 @@ require([
             $("#searchInput").css("border-radius", "0 5px 0 0");
             $("#searchIcon").css("border-radius", "5px 0 0 0");
             $(".dropdown-content").addClass("active");
+            var iconWidth = $("#icon").width();
+            var leftPadding = iconWidth + 5;
+            leftPadding = parseInt(leftPadding);
+            // console.log(leftPadding);
+            $(".searchResults").css("padding-left", leftPadding);
         } else {
             $("#searchInput").css("border-radius", "0 5px 5px 0");
             $("#searchIcon").css("border-radius", "5px 0 0 5px");
         }
 
-        $("#searchInput").keyup(function () {
+        $("#searchInput").keyup(function (e) {
             if (this.value) {
                 $(".dropdown-content").addClass("active");
                 $(".dropdown").addClass("active");
                 $("#searchInput").addClass("active");
                 $("#searchIcon").addClass("active");
             } else {
+                $(".dropdown-content").addClass("hide");
+                $("#searchInput").css("border-radius", "0 5px 5px 0");
+                $("#searchIcon").css("border-radius", "5px 0 0 5px");
                 $(".dropdown-content").removeClass("active");
                 $(".dropdown").removeClass("active");
                 $("#searchInput").removeClass("active");
                 $("#searchIcon").removeClass("active");
             }
         });
-        $("#searchInput").focusout(function () {
+        $('body').click(function (evt) {
+            if (evt.target.id == "searchInput") return;
+            if ($(evt.target).closest('#searchInput').length)
+                return;
             $(".dropdown-content").addClass("hide");
             $("#searchInput").css("border-radius", "0 5px 5px 0");
             $("#searchIcon").css("border-radius", "5px 0 0 5px");
         });
         $("#searchInput").focus(function () {
-            $(".dropdown-content").removeClass("hide");
-            $("#searchInput").css("border-radius", "0 5px 0 0");
-            $("#searchIcon").css("border-radius", "5px 0 0 0");
+            if (bestAr.length) {
+                $(".dropdown-content").removeClass("hide");
+                $("#searchInput").css("border-radius", "0 5px 0 0");
+                $("#searchIcon").css("border-radius", "5px 0 0 0");
+            }
+        });
+        $("#searchInput").keydown(function (e) {
+            if (e.which == 27) {
+                $("#searchInput").blur();
+                $(".dropdown-content").addClass("hide");
+                $("#searchInput").css("border-radius", "0 5px 5px 0");
+                $("#searchIcon").css("border-radius", "5px 0 0 5px");
+            }
         });
     };
 
-    // var idx = elasticlunr(function () {
-    //     this.setRef('id');
-    //     this.addField('title');
-    //     this.addField('body');
-    // });
+    var renderArticleView = function (ar) {
+        console.log(ar);
+        $("#body")
+            .empty()
+            .append(Mustache.render(articleViewer, ar));
+    };
 
     var idxTemp = JSON.parse(pullIndex);
     console.time('load');
@@ -107,11 +130,11 @@ require([
         // }
 
         var query = $(this).val();
-        console.log(query);
+        // console.log(query);
         // console.log(idx);
         var results = null;
         if (json_config == null) {
-            results = idx.search(query).map(function (result) {
+            results = idx.search(query, {}).map(function (result) {
                 // console.log(result.ref);
                 return articles.filter(function (a) {
                     // console.log(a);
@@ -119,17 +142,19 @@ require([
                 });
             });
         }
-        console.log(results);
+        // console.log(results);
         renderArticleList(results);
     }));
 
-    $("#question-list-container").delegate('li', 'click', function () {
-        var li = $(this);
-        var id = li.data('question-id');
+    $("#contentHolder").delegate('a', 'click', function () {
+        var a = $(this);
+        console.log(a);
+        var body = a.data('title');
+        console.log(body);
 
-        // renderQuestionView(questions.filter(function (question) {
-        //     return (question.id == id);
-        // })[0]);
+        renderArticleView(articles.filter(function (article) {
+            return (article.body == body);
+        })[0]);
     });
 
 });

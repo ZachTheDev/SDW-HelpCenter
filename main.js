@@ -78,11 +78,11 @@ require([
         });
     };
 
-    var renderArticleView = function (ar) {
-        console.log(ar);
+    var renderArticleView = function (article) {
+        console.log(article);
         $("#body")
             .empty()
-            .append(Mustache.render(articleViewer, ar));
+            .append(Mustache.render(articleViewer, article));
     };
 
     var idxTemp = JSON.parse(pullIndex);
@@ -149,11 +149,14 @@ require([
     $("#contentHolder").delegate('a', 'click', function () {
         var a = $(this);
         console.log(a);
-        var body = a.data('title');
-        console.log(body);
+        var id = a.data('id');
+        console.log(id);
 
         renderArticleView(articles.filter(function (article) {
-            return (article.body == body);
+            console.log(article.id);
+            console.log(id);
+            console.log(article.id == id);
+            return (article.id == id);
         })[0]);
     });
 

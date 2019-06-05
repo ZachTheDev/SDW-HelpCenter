@@ -1,7 +1,7 @@
 var express = require('express'),
     app = express(),
     // router = express.Router(),
-    port = 3000,
+    port = 80,
     fs = require('fs');
 var bodyParser = require('body-parser');
 app.use(express.static(__dirname));
